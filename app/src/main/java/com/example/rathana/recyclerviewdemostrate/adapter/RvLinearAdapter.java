@@ -21,10 +21,11 @@ import java.util.List;
 public class RvLinearAdapter extends RecyclerView.Adapter<RvLinearAdapter.ViewHolder>{
     private Context context;
     private List<Video> videos;
+    private CallBackListener listener;
     public RvLinearAdapter(Context context,List<Video> videos){
         this.context=context;this.videos=videos;
+        this.listener= (CallBackListener) context;
     }
-
     public void setVideos(List<Video> videos){
         this.videos=videos;
         notifyDataSetChanged();
@@ -38,14 +39,25 @@ public class RvLinearAdapter extends RecyclerView.Adapter<RvLinearAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         if(this.videos!=null || !this.videos.isEmpty()){
             Video video=this.videos.get(position);
-            if(!TextUtils.isEmpty(video.getTitle())) holder.title.setText(video.getTitle());
-            if(!TextUtils.isEmpty(video.getChannelName())) holder.channelName.setText(video.getChannelName());
-            if(!TextUtils.isEmpty(video.getViewer())) holder.viewer.setText(video.getViewer());
-            if(video.getThumb()!=0) holder.thumb.setImageResource(video.getThumb());
+            if(!TextUtils.isEmpty(video.getTitle()))
+                holder.title.setText(video.getTitle());
+            if(!TextUtils.isEmpty(video.getChannelName()))
+                holder.channelName.setText(video.getChannelName());
+            if(!TextUtils.isEmpty(video.getViewer()))
+                holder.viewer.setText(video.getViewer());
+            if(video.getThumb()!=0)
+                holder.thumb.setImageResource(video.getThumb());
         }
+
+       /* holder.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onShowPopupMenu(v,position);
+            }
+        });*/
     }
 
     @Override
@@ -58,13 +70,25 @@ public class RvLinearAdapter extends RecyclerView.Adapter<RvLinearAdapter.ViewHo
         private TextView title;
         private TextView viewer;
         private TextView channelName;
+        private ImageView btnRemove;
         public ViewHolder(View itemView) {
             super(itemView);
             thumb=itemView.findViewById(R.id.thumb);
             title=itemView.findViewById(R.id.title);
             viewer=itemView.findViewById(R.id.viewer);
             channelName=itemView.findViewById(R.id.channelName);
+            btnRemove=itemView.findViewById(R.id.btnRemove);
+
+            btnRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onShowPopupMenu(v,getAdapterPosition());
+                }
+            });
         }
     }
 
+    public interface  CallBackListener {
+        void onShowPopupMenu(View view,int position);
+    }
 }

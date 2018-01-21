@@ -28,7 +28,7 @@ implements RVGridAdapter.CallBackListener{
                 false
         );
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new RVGridAdapter(this,this.menus);
+        adapter=new RVGridAdapter(this,this.menus,Menu.GRID);
         recyclerView.setAdapter(adapter);
 
         setMenuItems();

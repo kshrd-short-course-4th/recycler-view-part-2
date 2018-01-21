@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.rathana.recyclerviewdemostrate.adapter.RVGridAdapter;
+
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onShowRVAsStaggerGrid(View view) {
-
+        startActivity(new Intent(this,StaggeredGridActivity.class));
     }
+
 }

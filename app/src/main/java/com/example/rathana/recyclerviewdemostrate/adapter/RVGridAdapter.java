@@ -23,21 +23,29 @@ public class RVGridAdapter extends RecyclerView.Adapter<RVGridAdapter.ViewHolder
     private Context context;
     private List<Menu> menus;
     private CallBackListener listener;
-
+    private int type;
     public interface CallBackListener{
         void onItemClickListener(int position);
     }
 
-    public RVGridAdapter(Context context,List<Menu> menus){
+    public RVGridAdapter(Context context,List<Menu> menus,int type){
         this.context=context;this.menus=menus;
         this.listener= (CallBackListener) context;
+        this.type=type;
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(
-                R.layout.grid_item_recycler_view_layout,parent,false
-        );
+        View view=null;
+        if(type==Menu.GRID)
+            view= LayoutInflater.from(context).inflate(
+                    R.layout.grid_item_recycler_view_layout,parent,false
+            );
+        else
+            view= LayoutInflater.from(context).inflate(
+                    R.layout.staggered_grid_item_recycler_view_layout,parent,false
+            );
         return new ViewHolder(view);
     }
 

@@ -5,8 +5,19 @@ package com.example.rathana.recyclerviewdemostrate.entity;
  */
 
 public class Menu {
+    public static final  int GRID=1;
+    public static final  int STAGGERED=2;
     private int thumb;
     private String title;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public Menu(int thumb, String title) {
         this.thumb = thumb;

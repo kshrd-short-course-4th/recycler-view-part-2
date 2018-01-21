@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".RVLinearLayoutManagerActivity" />
         <activity android:name=".GridLayoutManagerActivity" />
-        <activity android:name=".ImageViewerActivity"></activity>
+        <activity android:name=".ImageViewerActivity" />
+        <activity android:name=".StaggeredGridActivity"></activity>
     </application>
 
 </manifest>
