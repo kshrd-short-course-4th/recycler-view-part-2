@@ -19,7 +19,8 @@
         <activity android:name=".RVLinearLayoutManagerActivity" />
         <activity android:name=".GridLayoutManagerActivity" />
         <activity android:name=".ImageViewerActivity" />
-        <activity android:name=".StaggeredGridActivity"></activity>
+        <activity android:name=".StaggeredGridActivity" />
+        <activity android:name=".AddNewSongActivity"></activity>
     </application>
 
 </manifest>
